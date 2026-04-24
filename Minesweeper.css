@@ -1,0 +1,229 @@
+/* Global responsive styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+}
+
+h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#game-info {
+    margin-bottom: 15px;
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+#reset-btn {
+    margin-bottom: 15px;
+    padding: clamp(8px, 2vw, 12px) clamp(12px, 3vw, 20px);
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    transition: background-color 0.3s;
+}
+
+#reset-btn:hover {
+    background-color: #45a049;
+}
+
+#game-board {
+    display: inline-block;
+    border: 2px solid #000;
+    background-color: #ddd;
+    padding: clamp(5px, 1.5vw, 10px);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 95vw;
+    overflow: auto;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+/* Responsive cell sizing */
+.cell {
+    width: clamp(25px, 4vw, 40px);
+    height: clamp(25px, 4vw, 40px);
+    margin: clamp(0.5px, 0.3vw, 1px);
+    border: 1px solid #999;
+    background-color: #ccc;
+    cursor: pointer;
+    font-size: clamp(10px, 2.5vw, 16px);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    transition: background-color 0.2s;
+}
+
+.cell:hover {
+    background-color: #bbb;
+}
+
+.cell:active {
+    background-color: #aaa;
+}
+
+.cell.revealed {
+    background-color: #fff;
+    cursor: default;
+    border: 1px inset #999;
+}
+
+.cell.mine {
+    background-color: #f00;
+    color: white;
+}
+
+.cell.flagged {
+    background-color: #ff0;
+    color: #000;
+}
+
+/* Number colors for mine counts */
+.cell.revealed:not(.mine) {
+    color: #000;
+}
+
+.cell.revealed[data-number="1"] { color: #0000ff; }
+.cell.revealed[data-number="2"] { color: #008000; }
+.cell.revealed[data-number="3"] { color: #ff0000; }
+.cell.revealed[data-number="4"] { color: #000080; }
+.cell.revealed[data-number="5"] { color: #800000; }
+.cell.revealed[data-number="6"] { color: #008080; }
+.cell.revealed[data-number="7"] { color: #000000; }
+.cell.revealed[data-number="8"] { color: #808080; }
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    animation: fadeIn 0.3s ease-in;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: clamp(10%, 15vh, 15%) auto;
+    padding: clamp(20px, 5vw, 30px);
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    width: clamp(280px, 90%, 400px);
+    max-width: 90vw;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.3s ease-out;
+}
+
+.modal-content h2 {
+    color: #4CAF50;
+    margin-bottom: 20px;
+    font-size: clamp(1.5em, 6vw, 2em);
+}
+
+.modal-content p {
+    font-size: clamp(1em, 4vw, 1.2em);
+    margin: 15px 0;
+    color: #333;
+}
+
+.stats {
+    background-color: #f9f9f9;
+    padding: clamp(10px, 3vw, 15px);
+    border-radius: 5px;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+}
+
+.stats p {
+    margin: 5px 0;
+    font-weight: bold;
+    font-size: clamp(0.9em, 3vw, 1em);
+}
+
+#play-again-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: clamp(10px, 3vw, 12px) clamp(16px, 5vw, 24px);
+    font-size: clamp(1em, 3vw, 1.1em);
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+    min-width: 120px;
+}
+
+#play-again-btn:hover {
+    background-color: #45a049;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    #game-board {
+        max-width: 100vw;
+        padding: 3px;
+    }
+
+    .cell {
+        min-width: 30px;
+        min-height: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        margin: 5% auto;
+        padding: 15px;
+    }
+
+    .stats {
+        padding: 8px;
+    }
+}

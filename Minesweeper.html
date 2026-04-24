@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minesweeper</title>
+    <link rel="stylesheet" href="Minesweeper.css">
+</head>
+<body>
+    <h1>Minesweeper</h1>
+    <div id="game-info">
+        <p>Level: <span id="current-level">1</span> | Board Size: <span id="board-size">10x10</span> | Mines: <span id="mine-count">20</span></p>
+    </div>
+    <button id="reset-btn">New Game</button>
+    <div id="game-board">
+        <!-- 20x20 grid of buttons = 400 buttons -->
+        <div class="row">
+            <button class="cell" data-row="0" data-col="0"></button>
+            <button class="cell" data-row="0" data-col="1"></button>
+            <button class="cell" data-row="0" data-col="2"></button>
+            <button class="cell" data-row="0" data-col="3"></button>
+            <button class="cell" data-row="0" data-col="4"></button>
+            <button class="cell" data-row="0" data-col="5"></button>
+            <button class="cell" data-row="0" data-col="6"></button>
+            <button class="cell" data-row="0" data-col="7"></button>
+            <button class="cell" data-row="0" data-col="8"></button>
+            <button class="cell" data-row="0" data-col="9"></button>
+            <button class="cell" data-row="0" data-col="10"></button>
+            <button class="cell" data-row="0" data-col="11"></button>
+            <button class="cell" data-row="0" data-col="12"></button>
+            <button class="cell" data-row="0" data-col="13"></button>
+            <button class="cell" data-row="0" data-col="14"></button>
+            <button class="cell" data-row="0" data-col="15"></button>
+            <button class="cell" data-row="0" data-col="16"></button>
+            <button class="cell" data-row="0" data-col="17"></button>
+            <button class="cell" data-row="0" data-col="18"></button>
+            <button class="cell" data-row="0" data-col="19"></button>
+        </div>
+        <div class="row">
+            <button class="cell" data-row="1" data-col="0"></button>
+            <button class="cell" data-row="1" data-col="1"></button>
+            <button class="cell" data-row="1" data-col="2"></button>
+            <button class="cell" data-row="1" data-col="3"></button>
+            <button class="cell" data-row="1" data-col="4"></button>
+            <button class="cell" data-row="1" data-col="5"></button>
+            <button class="cell" data-row="1" data-col="6"></button>
+            <button class="cell" data-row="1" data-col="7"></button>
+            <button class="cell" data-row="1" data-col="8"></button>
+            <button class="cell" data-row="1" data-col="9"></button>
+            <button class="cell" data-row="1" data-col="10"></button>
+            <button class="cell" data-row="1" data-col="11"></button>
+            <button class="cell" data-row="1" data-col="12"></button>
+            <button class="cell" data-row="1" data-col="13"></button>
+            <button class="cell" data-row="1" data-col="14"></button>
+            <button class="cell" data-row="1" data-col="15"></button>
+            <button class="cell" data-row="1" data-col="16"></button>
+            <button class="cell" data-row="1" data-col="17"></button>
+            <button class="cell" data-row="1" data-col="18"></button>
+            <button class="cell" data-row="1" data-col="19"></button>
+        </div>
+        <div class="row">
+            <button class="cell" data-row="2" data-col="0"></button>
+            <button class="cell" data-row="2" data-col="1"></button>
+            <button class="cell" data-row="2" data-col="2"></button>
+            <button class="cell" data-row="2" data-col="3"></button>
+            <button class="cell" data-row="2" data-col="4"></button>
+            <button class="cell" data-row="2" data-col="5"></button>
+            <button class="cell" data-row="2" data-col="6"></button>
+            <button class="cell" data-row="2" data-col="7"></button>
+            <button class="cell" data-row="2" data-col="8"></button>
+            <button class="cell" data-row="2" data-col="9"></button>
+            <button class="cell" data-row="2" data-col="10"></button>
+            <button class="cell" data-row="2" data-col="11"></button>
+            <button class="cell" data-row="2" data-col="12"></button>
+            <button class="cell" data-row="2" data-col="13"></button>
+            <button class="cell" data-row="2" data-col="14"></button>
+            <button class="cell" data-row="2" data-col="15"></button>
+            <button class="cell" data-row="2" data-col="16"></button>
+            <button class="cell" data-row="2" data-col="17"></button>
+            <button class="cell" data-row="2" data-col="18"></button>
+            <button class="cell" data-row="2" data-col="19"></button>
+        </div>
+        <div class="row">
+            <button class="cell" data-row="3" data-col="0"></button>
+            <button class="cell" data-row="3" data-col="1"></button>
+            <button class="cell" data-row="3" data-col="2"></button>
+            <button class="cell" data-row="3" data-col="3"></button>
+            <button class="cell" data-row="3" data-col="4"></button>
+            <button class="cell" data-row="3" data-col="5"></button>
+            <button class="cell" data-row="3" data-col="6"></button>
+            <button class="cell" data-row="3" data-col="7"></button>
+            <button class="cell" data-row="3" data-col="8"></button>
+            <button class="cell" data-row="3" data-col="9"></button>
+            <button class="cell" data-row="3" data-col="10"></button>
+            <button class="cell" data-row="3" data-col="11"></button>
+            <button class="cell" data-row="3" data-col="12"></button>
+            <button class="cell" data-row="3" data-col="13"></button>
+            <button class="cell" data-row="3" data-col="14"></button>
+            <button class="cell" data-row="3" data-col="15"></button>
+            <button class="cell" data-row="3" data-col="16"></button>
+            <button class="cell" data-row="3" data-col="17"></button>
+            <button class="cell" data-row="3" data-col="18"></button>
+            <button class="cell" data-row="3" data-col="19"></button>
+        </div>
+        <div class="row">
+            <button class="cell" data-row="4" data-col="0"></button>
+            <button class="cell" data-row="4" data-col="1"></button>
+            <button class="cell" data-row="4" data-col="2"></button>
+            <button class="cell" data-row="4" data-col="3"></button>
+            <button class="cell" data-row="4" data-col="4"></button>
+            <button class="cell" data-row="4" data-col="5"></button>
+            <button class="cell" data-row="4" data-col="6"></button>
+            <button class="cell" data-row="4" data-col="7"></button>
+            <button class="cell" data-row="4" data-col="8"></button>
+            <button class="cell" data-row="4" data-col="9"></button>
+            <button class="cell" data-row="4" data-col="10"></button>
+            <button class="cell" data-row="4" data-col="11"></button>
+            <button class="cell" data-row="4" data-col="12"></button>
+            <button class="cell" data-row="4" data-col="13"></button>
+            <button class="cell" data-row="4" data-col="14"></button>
+            <button class="cell" data-row="4" data-col="15"></button>
+            <button class="cell" data-row="4" data-col="16"></button>
+            <button class="cell" data-row="4" data-col="17"></button>
+            <button class="cell" data-row="4" data-col="18"></button>
+            <button class="cell" data-row="4" data-col="19"></button>
+        </div>
+        <div class="row">
+            <button class="cell" data-row="5" data-col="0"></button>
+            <button class="cell" data-row="5" data-col="1"></button>
+            <button class="cell" data-row="5" data-col="2"></button>
+            <button class="cell" data-row="5" data-col="3"></button>
+            <button class="cell" data-row="5" data-col="4"></button>
+            <button class="cell" data-row="5" data-col="5"></button>
+            <button class="cell" data-row="5" data-col="6"></button>
+            <button class="cell" data-row="5" data-col="7"></button>
+            <button class="cell" data-row="5" data-col="8"></button>
+            <button class="cell" data-row="5" data-col="9"></button>
+            <button class="cell" data-row="5" data-col="10"></button>
+            <button class="cell" data-row="5" data-col="11"></button>
+            <button class="cell" data-row="5" data-col="12"></button>
+            <button class="cell" data-row="5" data-col="13"></button>
+            <button class="cell" data-row="5" data-col="14"></button>
+            <button class="cell" data-row="5" data-col="15"></button>
+            <button class="cell" data-row="5" data-col="16"></button>
+            <button class="cell" data-row="5" data-col="17"></button>
+            <button class="cell" data-row="5" data-col="18"></button>
+            <button class="cell" data-row="5" data-col="19"></button>
+        </div>
+        <div class="row">
+            <button class="cell" data-row="6" data-col="0"></button>
+            <button class="cell" data-row="6" data-col="1"></button>
+            <button class="cell" data-row="6" data-col="2"></button>
+            <button class="cell" data-row="6" data-col="3"></button>
+            <button class="cell" data-row="6" data-col="4"></button>
+            <button class="cell" data-row="6" data-col="5"></button>
+            <button class="cell" data-row="6" data-col="6"></button>
+            <button class="cell" data-row="6" data-col="7"></button>
+            <button class="cell" data-row="6" data-col="8"></button>
+            <button class="cell" data-row="6" data-col="9"></button>
+            <button class="cell" data-row="6" data-col="10"></button>
+            <button class="cell" data-row="6" data-col="11"></button>
+            <button class="cell" data-row="6" data-col="12"></button>
+            <button class="cell" data-row="6" data-col="13"></button>
+            <button class="cell" data-row="6" data-col="14"></button>
+            <button class="cell" data-row="6" data-col="15"></button>
+            <button class="cell" data-row="6" data-col="16"></button>
+            <button class="cell" data-row="6" data-col="17"></button>
+            <button class="cell" data-row="6" data-col="18"></button>
+            <button class="cell" data-row="6" data-col="19"></button>
+        </div>
+        <div class="row">
+            <button class="cell" data-row="7" data-col="0"></button>
+            <button class="cell" data-row="7" data-col="1"></button>
+            <button class="cell" data-row="7" data-col="2"></button>
+            <button class="cell" data-row="7" data-col="3"></button>
+            <button class="cell" data-row="7" data-col="4"></button>
+            <button class="cell" data-row="7" data-col="5"></button>
+            <button class="cell" data-row="7" data-col="6"></button>
+            <button class="cell" data-row="7" data-col="7"></button>
+            <button class="cell" data-row="7" data-col="8"></button>
+            <button class="cell" data-row="7" data-col="9"></button>
+            <button class="cell" data-row="7" data-col="10"></button>
+            <button class="cell" data-row="7" data-col="11"></button>
+            <button class="cell" data-row="7" data-col="12"></button>
+            <button class="cell" data-row="7" data-col="13"></button>
+            <button class="cell" data-row="7" data-col="14"></button>
+            <button class="cell" data-row="7" data-col="15"></button>
+            <button class="cell" data-row="7" data-col="16"></button>
+            <button class="cell" data-row="7" data-col="17"></button>
+            <button class="cell" data-row="7" data-col="18"></button>
+            <button class="cell" data-row="7" data-col="19"></button>
+        </div>
+        <div class="row">
+            <button class="cell" data-row="8" data-col="0"></button>
+            <button class="cell" data-row="8" data-col="1"></button>
+            <button class="cell" data-row="8" data-col="2"></button>
+            <button class="cell" data-row="8" data-col="3"></button>
+            <button class="cell" data-row="8" data-col="4"></button>
+            <button class="cell" data-row="8" data-col="5"></button>
+            <button class="cell" data-row="8" data-col="6"></button>
+            <button class="cell" data-row="8" data-col="7"></button>
+            <button class="cell" data-row="8" data-col="8"></button>
+            <button class="cell" data-row="8" data-col="9"></button>
+            <button class="cell" data-row="8" data-col="10"></button>
+            <button class="cell" data-row="8" data-col="11"></button>
+            <button class="cell" data-row="8" data-col="12"></button>
+            <button class="cell" data-row="8" data-col="13"></button>
+            <button class="cell" data-row="8" data-col="14"></button>
+            <button class="cell" data-row="8" data-col="15"></button>
+            <button class="cell" data-row="8" data-col="16"></button>
+            <button class="cell" data-row="8" data-col="17"></button>
+            <button class="cell" data-row="8" data-col="18"></button>
+            <button class="cell" data-row="8" data-col="19"></button>
+        </div>
+        <div class="row">
+            <button class="cell" data-row="9" data-col="0"></button>
+            <button class="cell" data-row="9" data-col="1"></button>
+            <button class="cell" data-row="9" data-col="2"></button>
+            <button class="cell" data-row="9" data-col="3"></button>
+            <button class="cell" data-row="9" data-col="4"></button>
+            <button class="cell" data-row="9" data-col="5"></button>
+            <button class="cell" data-row="9" data-col="6"></button>
+            <button class="cell" data-row="9" data-col="7"></button>
+            <button class="cell" data-row="9" data-col="8"></button>
+            <button class="cell" data-row="9" data-col="9"></button>
+            <button class="cell" data-row="9" data-col="10"></button>
+            <button class="cell" data-row="9" data-col="11"></button>
+            <button class="cell" data-row="9" data-col="12"></button>
+            <button class="cell" data-row="9" data-col="13"></button>
+            <button class="cell" data-row="9" data-col="14"></button>
+            <button class="cell" data-row="9" data-col="15"></button>
+            <button class="cell" data-row="9" data-col="16"></button>
+            <button class="cell" data-row="9" data-col="17"></button>
+            <button class="cell" data-row="9" data-col="18"></button>
+            <button class="cell" data-row="9" data-col="19"></button>
+        </div>
+        <div class="row">
+            <button class="cell" data-row="10" data-col="0"></button>
+            <button class="cell" data-row="10" data-col="1"></button>
+            <button class="cell" data-row="10" data-col="2"></button>
+            <button class="cell" data-row="10" data-col="3"></button>
+            <button class="cell" data-row="10" data-col="4"></button>
+            <button class="cell" data-row="10" data-col="5"></button>
+            <button class="cell" data-row="10" data-col="6"></button>
+            <button class="cell" data-row="10" data-col="7"></button>
+            <button class="cell" data-row="10" data-col="8"></button>
+            <button class="cell" data-row="10" data-col="9"></button>
+            <button class="cell" data-row="10" data-col="10"></button>
+            <button class="cell" data-row="10" data-col="11"></button>
+            <button class="cell" data-row="10" data-col="12"></button>
+            <button class="cell" data-row="10" data-col="13"></button>
+            <button class="cell" data-row="10" data-col="14"></button>
+            <button class="cell" data-row="10" data-col="15"></button>
+            <button class="cell" data-row="10" data-col="16"></button>
+            <button class="cell" data-row="10" data-col="17"></button>
+            <button class="cell" data-row="10" data-col="18"></button>
+            <button class="cell" data-row="10" data-col="19"></button>
+        </div>
+        <div class="row">
+            <button class="cell" data-row="11" data-col="0"></button>
+            <button class="cell" data-row="11" data-col="1"></button>
+            <button class="cell" data-row="11" data-col="2"></button>
+            <button class="cell" data-row="11" data-col="3"></button>
+            <button class="cell" data-row="11" data-col="4"></button>
+            <button class="cell" data-row="11" data-col="5"></button>
+            <button class="cell" data-row="11" data-col="6"></button>
+            <button class="cell" data-row="11" data-col="7"></button>
+            <button class="cell" data-row="11" data-col="8"></button>
+            <button class="cell" data-row="11" data-col="9"></button>
+            <button class="cell" data-row="11" data-col="10"></button>
+            <button class="cell" data-row="11" data-col="11"></button>
+            <button class="cell" data-row="11" data-col="12"></button>
+            <button class="cell" data-row="11" data-col="13"></button>
+            <button class="cell" data-row="11" data-col="14"></button>
+            <button class="cell" data-row="11" data-col="15"></button>
+            <button class="cell" data-row="11" data-col="16"></button>
+            <button class="cell" data-row="11" data-col="17"></button>
+            <button class="cell" data-row="11" data-col="18"></button>
+            <button class="cell" data-row="11" data-col="19"></button>
+        </div>
+        <div class="row">
+            <button class="cell" data-row="12" data-col="0"></button>
+            <button class="cell" data-row="12" data-col="1"></button>
+            <button class="cell" data-row="12" data-col="2"></button>
+            <button class="cell" data-row="12" data-col="3"></button>
+            <button class="cell" data-row="12" data-col="4"></button>
+            <button class="cell" data-row="12" data-col="5"></button>
+            <button class="cell" data-row="12" data-col="6"></button>
+            <button class="cell" data-row="12" data-col="7"></button>
+            <button class="cell" data-row="12" data-col="8"></button>
+            <button class="cell" data-row="12" data-col="9"></button>
+            <button class="cell" data-row="12" data-col="10"></button>
+            <button class="cell" data-row="12" data-col="11"></button>
+            <button class="cell" data-row="12" data-col="12"></button>
+            <button class="cell" data-row="12" data-col="13"></button>
+            <button class="cell" data-row="12" data-col="14"></button>
+            <button class="cell" data-row="12" data-col="15"></button>
+            <button class="cell" data-row="12" data-col="16"></button>
+            <button class="cell" data-row="12" data-col="17"></button>
+            <button class="cell" data-row="12" data-col="18"></button>
+            <button class="cell" data-row="12" data-col="19"></button>
+        </div>
+        <div class="row">
+            <button class="cell" data-row="13" data-col="0"></button>
+            <button class="cell" data-row="13" data-col="1"></button>
+            <button class="cell" data-row="13" data-col="2"></button>
+            <button class="cell" data-row="13" data-col="3"></button>
+            <button class="cell" data-row="13" data-col="4"></button>
+            <button class="cell" data-row="13" data-col="5"></button>
+            <button class="cell" data-row="13" data-col="6"></button>
+            <button class="cell" data-row="13" data-col="7"></button>
+            <button class="cell" data-row="13" data-col="8"></button>
+            <button class="cell" data-row="13" data-col="9"></button>
+            <button class="cell" data-row="13" data-col="10"></button>
+            <button class="cell" data-row="13" data-col="11"></button>
+            <button class="cell" data-row="13" data-col="12"></button>
+            <button class="cell" data-row="13" data-col="13"></button>
+            <button class="cell" data-row="13" data-col="14"></button>
+            <button class="cell" data-row="13" data-col="15"></button>
+            <button class="cell" data-row="13" data-col="16"></button>
+            <button class="cell" data-row="13" data-col="17"></button>
+            <button class="cell" data-row="13" data-col="18"></button>
+            <button class="cell" data-row="13" data-col="19"></button>
+        </div>
+        <div class="row">
+            <button class="cell" data-row="14" data-col="0"></button>
+            <button class="cell" data-row="14" data-col="1"></button>
+            <button class="cell" data-row="14" data-col="2"></button>
+            <button class="cell" data-row="14" data-col="3"></button>
+            <button class="cell" data-row="14" data-col="4"></button>
+            <button class="cell" data-row="14" data-col="5"></button>
+            <button class="cell" data-row="14" data-col="6"></button>
+            <button class="cell" data-row="14" data-col="7"></button>
+            <button class="cell" data-row="14" data-col="8"></button>
+            <button class="cell" data-row="14" data-col="9"></button>
+            <button class="cell" data-row="14" data-col="10"></button>
+            <button class="cell" data-row="14" data-col="11"></button>
+            <button class="cell" data-row="14" data-col="12"></button>
+            <button class="cell" data-row="14" data-col="13"></button>
+            <button class="cell" data-row="14" data-col="14"></button>
+            <button class="cell" data-row="14" data-col="15"></button>
+            <button class="cell" data-row="14" data-col="16"></button>
+            <button class="cell" data-row="14" data-col="17"></button>
+            <button class="cell" data-row="14" data-col="18"></button>
+            <button class="cell" data-row="14" data-col="19"></button>
+        </div>
+        <div class="row">
+            <button class="cell" data-row="15" data-col="0"></button>
+            <button class="cell" data-row="15" data-col="1"></button>
+            <button class="cell" data-row="15" data-col="2"></button>
+            <button class="cell" data-row="15" data-col="3"></button>
+            <button class="cell" data-row="15" data-col="4"></button>
+            <button class="cell" data-row="15" data-col="5"></button>
+            <button class="cell" data-row="15" data-col="6"></button>
+            <button class="cell" data-row="15" data-col="7"></button>
+            <button class="cell" data-row="15" data-col="8"></button>
+            <button class="cell" data-row="15" data-col="9"></button>
+            <button class="cell" data-row="15" data-col="10"></button>
+            <button class="cell" data-row="15" data-col="11"></button>
+            <button class="cell" data-row="15" data-col="12"></button>
+            <button class="cell" data-row="15" data-col="13"></button>
+            <button class="cell" data-row="15" data-col="14"></button>
+            <button class="cell" data-row="15" data-col="15"></button>
+            <button class="cell" data-row="15" data-col="16"></button>
+            <button class="cell" data-row="15" data-col="17"></button>
+            <button class="cell" data-row="15" data-col="18"></button>
+            <button class="cell" data-row="15" data-col="19"></button>
+        </div>
+        <div class="row">
+            <button class="cell" data-row="16" data-col="0"></button>
+            <button class="cell" data-row="16" data-col="1"></button>
+            <button class="cell" data-row="16" data-col="2"></button>
+            <button class="cell" data-row="16" data-col="3"></button>
+            <button class="cell" data-row="16" data-col="4"></button>
+            <button class="cell" data-row="16" data-col="5"></button>
+            <button class="cell" data-row="16" data-col="6"></button>
+            <button class="cell" data-row="16" data-col="7"></button>
+            <button class="cell" data-row="16" data-col="8"></button>
+            <button class="cell" data-row="16" data-col="9"></button>
+            <button class="cell" data-row="16" data-col="10"></button>
+            <button class="cell" data-row="16" data-col="11"></button>
+            <button class="cell" data-row="16" data-col="12"></button>
+            <button class="cell" data-row="16" data-col="13"></button>
+            <button class="cell" data-row="16" data-col="14"></button>
+            <button class="cell" data-row="16" data-col="15"></button>
+            <button class="cell" data-row="16" data-col="16"></button>
+            <button class="cell" data-row="16" data-col="17"></button>
+            <button class="cell" data-row="16" data-col="18"></button>
+            <button class="cell" data-row="16" data-col="19"></button>
+        </div>
+        <div class="row">
+            <button class="cell" data-row="17" data-col="0"></button>
+            <button class="cell" data-row="17" data-col="1"></button>
+            <button class="cell" data-row="17" data-col="2"></button>
+            <button class="cell" data-row="17" data-col="3"></button>
+            <button class="cell" data-row="17" data-col="4"></button>
+            <button class="cell" data-row="17" data-col="5"></button>
+            <button class="cell" data-row="17" data-col="6"></button>
+            <button class="cell" data-row="17" data-col="7"></button>
+            <button class="cell" data-row="17" data-col="8"></button>
+            <button class="cell" data-row="17" data-col="9"></button>
+            <button class="cell" data-row="17" data-col="10"></button>
+            <button class="cell" data-row="17" data-col="11"></button>
+            <button class="cell" data-row="17" data-col="12"></button>
+            <button class="cell" data-row="17" data-col="13"></button>
+            <button class="cell" data-row="17" data-col="14"></button>
+            <button class="cell" data-row="17" data-col="15"></button>
+            <button class="cell" data-row="17" data-col="16"></button>
+            <button class="cell" data-row="17" data-col="17"></button>
+            <button class="cell" data-row="17" data-col="18"></button>
+            <button class="cell" data-row="17" data-col="19"></button>
+        </div>
+        <div class="row">
+            <button class="cell" data-row="18" data-col="0"></button>
+            <button class="cell" data-row="18" data-col="1"></button>
+            <button class="cell" data-row="18" data-col="2"></button>
+            <button class="cell" data-row="18" data-col="3"></button>
+            <button class="cell" data-row="18" data-col="4"></button>
+            <button class="cell" data-row="18" data-col="5"></button>
+            <button class="cell" data-row="18" data-col="6"></button>
+            <button class="cell" data-row="18" data-col="7"></button>
+            <button class="cell" data-row="18" data-col="8"></button>
+            <button class="cell" data-row="18" data-col="9"></button>
+            <button class="cell" data-row="18" data-col="10"></button>
+            <button class="cell" data-row="18" data-col="11"></button>
+            <button class="cell" data-row="18" data-col="12"></button>
+            <button class="cell" data-row="18" data-col="13"></button>
+            <button class="cell" data-row="18" data-col="14"></button>
+            <button class="cell" data-row="18" data-col="15"></button>
+            <button class="cell" data-row="18" data-col="16"></button>
+            <button class="cell" data-row="18" data-col="17"></button>
+            <button class="cell" data-row="18" data-col="18"></button>
+            <button class="cell" data-row="18" data-col="19"></button>
+        </div>
+        <div class="row">
+            <button class="cell" data-row="19" data-col="0"></button>
+            <button class="cell" data-row="19" data-col="1"></button>
+            <button class="cell" data-row="19" data-col="2"></button>
+            <button class="cell" data-row="19" data-col="3"></button>
+            <button class="cell" data-row="19" data-col="4"></button>
+            <button class="cell" data-row="19" data-col="5"></button>
+            <button class="cell" data-row="19" data-col="6"></button>
+            <button class="cell" data-row="19" data-col="7"></button>
+            <button class="cell" data-row="19" data-col="8"></button>
+            <button class="cell" data-row="19" data-col="9"></button>
+            <button class="cell" data-row="19" data-col="10"></button>
+            <button class="cell" data-row="19" data-col="11"></button>
+            <button class="cell" data-row="19" data-col="12"></button>
+            <button class="cell" data-row="19" data-col="13"></button>
+            <button class="cell" data-row="19" data-col="14"></button>
+            <button class="cell" data-row="19" data-col="15"></button>
+            <button class="cell" data-row="19" data-col="16"></button>
+            <button class="cell" data-row="19" data-col="17"></button>
+            <button class="cell" data-row="19" data-col="18"></button>
+            <button class="cell" data-row="19" data-col="19"></button>
+        </div>
+    </div>
+
+    <!-- Win Screen Modal -->
+    <div id="win-modal" class="modal">
+        <div class="modal-content">
+            <h2>🎉 Level <span id="level-completed">1</span> Complete! 🎉</h2>
+            <p>You successfully cleared all the mines!</p>
+            <div class="stats">
+                <p>Level: <span id="current-level">1</span></p>
+                <p>Mines avoided: <span id="mines-avoided">20</span></p>
+                <p>Cells revealed: <span id="cells-revealed">80</span></p>
+                <p><strong>Next: <span id="next-size">11x11</span> board with <span id="next-mines">24</span> mines</strong></p>
+            </div>
+            <button id="play-again-btn">Continue to Next Level</button>
+        </div>
+    </div>
+
+    <script src="Minesweeper.js"></script>
+</body>
+</html>
